@@ -1,0 +1,121 @@
+/**
+ * The function `removeAboutMeWeeklyStats()` removes weekly stats emails from about.me with the subject
+ * line "your weekly stats from about.me" from the trash folder.
+ */
+function removeAboutMeWeeklyStats() {
+  const query = 'from:(about.me Stats <noreply@team.about.me>) subject:"your weekly stats from about.me"';
+  const pattern = /\d[\n\s]*Page Visits/m;
+  main(query, pattern, false);
+}
+
+/**
+ * The function `removeAffiliatesOne` removes emails with the subject "已暫停推廣" from the sender
+ * "system@affiliates.one".
+ */
+function removeAffiliatesOne() {
+  const query = 'from:(system@affiliates.one) subject:已暫停推廣';
+  const pattern = /已暫停推廣/m;
+  main(query, pattern, false);
+}
+
+/**
+ * The function `removeBrookstoneAffiliateInfo` removes Brookstone affiliate information from emails
+ * based on specific criteria.
+ */
+function removeBrookstoneAffiliateInfo() {
+  const query = 'from:(owner-membermessaging@mx6.cj.com) subject:(Brookstone)';
+  const datePattern = /Brookstone:[\w\s\d!$%-\/]*?(?<exp>(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{1,2}-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)?\s?\d{1,2})/gm;
+  const dateFormatter = (textWithDate, lastMessageDate) => {
+    const year = Utilities.formatDate(lastMessageDate, 'GMT', 'yyyy');
+    const re = /(?<month1>\w{3})\s\d+-(?<month2>\w{3})?\s?(?<enddate>\d+)/;
+    const matches = re.exec(textWithDate);
+    if (matches.groups.month2) {
+      return `${year}-${matches.groups.month2}.${matches.groups.enddate}`;
+    } else {
+      return `${year}-${matches.groups.month1}.${matches.groups.enddate}`;
+    }
+    return undefined;
+  }
+  main(query, datePattern, false, dateFormatter);
+}
+
+/**
+ * The function `removeCorelAffiliateInfo()` removes Corel Corporation affiliate information from
+ * emails.
+ */
+function removeCorelAffiliateInfo() {
+  const query = 'from:(Corel Corporation <owner-membermessaging@mx6.cj.com>)';
+  const datePattern = /Dates?\s?:\s?\d{1,2}[.\/]\d{1,2}[.\/]\d{2,4}\s?-\s?(?<exp>\d{1,2}[.\/]\d{1,2}[.\/]\d{2,4})/gm;
+  main(query, datePattern, false);
+}
+
+/**
+ * The function `removeIATeamInfo` removes newly launched affiliate offers from emails received from
+ * hello@involve.asia.
+ */
+function removeIATeamInfo() {
+  const query = 'from:(hello@involve.asia) subject:(Newly Launched Affiliate Offers)';
+  const datePattern = /(?<exp>Check out these new live offers)/gm;
+  main(query, datePattern, false);
+}
+
+/**
+ * The function `removeMoneyHeroInfo` removes emails from the MoneyHero sender that are in the trash
+ * and have a date in the format "yyyy年mm月dd日或之前".
+ */
+function removeMoneyHeroInfo() {
+  const query = 'from:(MoneyHero <reply@em.moneyhero.com.hk>) is:trash';
+  const datePattern = /\d{4}年d{1,2}月\d{1,2}日或之前/gm;
+  const dateFormatter = (textWithDate, lastMessageDate) => {
+    const re = /(?<year>\d{4})年(?<month1>d{1,2})月(?<enddate>\d{1,2})日或之前/;
+    const matches = re.exec(textWithDate);
+    return `${year}-${matches.groups.month1}.${matches.groups.enddate}`;
+  }
+  main(query, datePattern, false, dateFormatter);
+}
+
+/**
+ * The function `removeNamecheapAffiliateInfo` removes Namecheap affiliate emails from a specific label
+ * and formats the date in a specific way.
+ */
+function removeNamecheapAffiliateInfo() {
+  const query = 'from:(Namecheap Affiliate Team<owner-membermessaging@mx6.cj.com>) -label:affiliate-program';
+  const datePattern = /(?<exp>(January|Feburary|March|April|May|June|July|Augest|September|October|November|December) \d{1,2}-\d{1,2}\.?$)/gm;
+  const dateFormatter = (textWithDate, lastMessageDate) => {
+    const year = Utilities.formatDate(lastMessageDate, 'GMT', 'yyyy');
+    const re = /(?<month1>\w+)\s(\d+-)?s?(?<enddate>\d+)/;
+    const matches = re.exec(textWithDate);
+    return `${year}-${matches.groups.month1}.${matches.groups.enddate}`;
+  }
+  main(query, datePattern, false, dateFormatter);
+}
+
+/**
+ * The function `removeWondershareAffiliateInfo` removes Wondershare affiliate information from emails
+ * matching a specific query string and date pattern.
+ */
+function removeWondershareAffiliateInfo() {
+  const query = 'from:(owner-membermessaging@mx6.cj.com) subject:(Wondershare)';
+  const datePattern = /(Time|Period)?\s?:[\s?\*]*(\d{4}[.\/]\d{1,2}[.\/]\d{1,2}|Now)\s?-[\s?\*]*(?<exp>\d{4}[.\/]\d{1,2}[.\/]\d{1,2})/gm;
+  main(query, datePattern, false);
+}
+
+/**
+ * The function `removeYandexWebmasterInfo` removes Yandex Webmaster information from a given query
+ * string using a regular expression and a date formatter.
+ */
+function removeYandexWebmasterInfo() {
+  const query = 'from:(Yandex.Webmaster <devnull@webmaster.yandex.ru>)';
+  const datePattern = /for the week of (?<exp>\d{1,2} ?\w* \W \d{1,2} \w+)/gm;
+  const dateFormatter = (textWithDate, lastMessageDate) => {
+    const year = Utilities.formatDate(lastMessageDate, 'GMT', 'yyyy');
+    const re = /\d{1,2} ?(?<month1>\w*) \W ?(?<enddate>\d{1,2}) (?<month2>\w+)/;
+    const matches = re.exec(textWithDate);
+    if (matches.groups.month2) {
+      return `${year}-${matches.groups.month2}.${matches.groups.enddate}`;
+    } else {
+      return `${year}-${matches.groups.month1}.${matches.groups.enddate}`;
+    }
+  }
+  main(query, datePattern, false, dateFormatter);
+}

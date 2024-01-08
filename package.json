@@ -1,0 +1,53 @@
+{
+  "name": "gmail-regex-cleaner-apps-script",
+  "version": "1.0.0",
+  "description": "A Google Apps Script that helps you delete Gmail messages older than n days that match your custom regex filters.",
+  "main": "index.js",
+  "scripts": {
+    "login": "npx clasp login",
+    "logout": "npx clasp logout",
+    "pull": "npx clasp pull",
+    "push": "npx clasp push",
+    "push:watch": "npx clasp push -w",
+    "status": "npx clasp status",
+    "open": "npx clasp open",
+    "deployments": "npx clasp deployments",
+    "versions": "npx clasp versions",
+    "logs": "npx clasp logs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chriskyfung/gmail-regex-cleaner-apps-script.git"
+  },
+  "keywords": [
+    "google-apps-script",
+    "gmail",
+    "mail-filter",
+    "mail-remove"
+  ],
+  "author": "Chris K.Y. Fung",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/chriskyfung/gmail-regex-cleaner-apps-script/issues"
+  },
+  "homepage": "https://github.com/chriskyfung/gmail-regex-cleaner-apps-script#readme",
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/chriskyfung"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/chrisfungky"
+    }
+  ],
+  "engines": {
+    "node": ">=14.18.0",
+    "npm": ">=6.14.15"
+  },
+  "devDependencies": {
+    "@google/clasp": "^2.4.2",
+    "@types/google-apps-script": "^1.0.56"
+  }
+}
