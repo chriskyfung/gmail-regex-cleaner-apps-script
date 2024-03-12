@@ -1,6 +1,7 @@
 /**
  * The function `removeAboutMeWeeklyStats()` removes weekly stats emails from about.me with the subject
- * line "your weekly stats from about.me" from the trash folder.
+ * line "your weekly stats from about.me" from the trash folder. The regex pattern looks for instances
+ * where a digit is followed by "Page Visits" with potential newlines or spaces in between.
  */
 function removeAboutMeWeeklyStats() {
   const query = 'from:(about.me Stats <noreply@team.about.me>) subject:"your weekly stats from about.me"';
@@ -10,7 +11,8 @@ function removeAboutMeWeeklyStats() {
 
 /**
  * The function `removeAffiliatesOne` removes emails with the subject "已暫停推廣" from the sender
- * "system@affiliates.one".
+ * "system@affiliates.one". The pattern matches the phrase "已暫停推廣" in the text, which indicates
+ * that the promotion has been suspended.
  */
 function removeAffiliatesOne() {
   const query = 'from:(system@affiliates.one) subject:已暫停推廣';
@@ -20,7 +22,10 @@ function removeAffiliatesOne() {
 
 /**
  * The function `removeBrookstoneAffiliateInfo` removes Brookstone affiliate information from emails
- * based on specific criteria.
+ * based on specific criteria. The first regex pattern extracts date ranges following the "Brookstone:"
+ * label in the format "Month Day-Month Day" into a named group "exp". And, the second regex pattern
+ * capturs the start and end dates from the date range, with the end date being either a month followed
+ * by a day or just a day (if the month is omitted).
  */
 function removeBrookstoneAffiliateInfo() {
   const query = 'from:(owner-membermessaging@mx6.cj.com) subject:(Brookstone)';
@@ -41,7 +46,8 @@ function removeBrookstoneAffiliateInfo() {
 
 /**
  * The function `removeCorelAffiliateInfo()` removes Corel Corporation affiliate information from
- * emails.
+ * emails. The regex pattern looks for date ranges in the format "Date: dd/mm/yyyy - dd/mm/yyyy" 
+ * and captures the second date in a named group "exp".
  */
 function removeCorelAffiliateInfo() {
   const query = 'from:(Corel Corporation <owner-membermessaging@mx6.cj.com>)';
@@ -51,7 +57,7 @@ function removeCorelAffiliateInfo() {
 
 /**
  * The function `removeIATeamInfo` removes newly launched affiliate offers from emails received from
- * hello@involve.asia.
+ * hello@involve.asia. The regex pattern looks for "Check out these new live offers" in the text.
  */
 function removeIATeamInfo() {
   const query = 'from:(hello@involve.asia) subject:(Newly Launched Affiliate Offers)';
@@ -76,7 +82,9 @@ function removeMoneyHeroInfo() {
 
 /**
  * The function `removeNamecheapAffiliateInfo` removes Namecheap affiliate emails from a specific label
- * and formats the date in a specific way.
+ * and formats the date in a specific way. The first regex pattern extracts date ranges in the format
+ * of "Month DD-DD" into a named group "exp". The second regex pattern capture the month and the end date
+ * into named groups "month1" and "enddate", respectively.
  */
 function removeNamecheapAffiliateInfo() {
   const query = 'from:(Namecheap Affiliate Team<owner-membermessaging@mx6.cj.com>) -label:affiliate-program';
@@ -92,7 +100,8 @@ function removeNamecheapAffiliateInfo() {
 
 /**
  * The function `removeWondershareAffiliateInfo` removes Wondershare affiliate information from emails
- * matching a specific query string and date pattern.
+ * matching a specific query string and date pattern. The regex pattern matches date ranges in the format
+ * of "Time: YYYY/MM/DD - YYYY/MM/DD" or "Period: YYYY.MM.DD - YYYY.MM.DD" or "Now - YYYY/MM/DD".
  */
 function removeWondershareAffiliateInfo() {
   const query = 'from:(owner-membermessaging@mx6.cj.com) subject:(Wondershare)';
@@ -102,7 +111,8 @@ function removeWondershareAffiliateInfo() {
 
 /**
  * The function `removeYandexWebmasterInfo` removes Yandex Webmaster information from a given query
- * string using a regular expression and a date formatter.
+ * string using a regular expression and a date formatter. The regex pattern captures dates in the
+ * format "for the week of [DD MMM - DD MMM]".
  */
 function removeYandexWebmasterInfo() {
   const query = 'from:(Yandex.Webmaster <devnull@webmaster.yandex.ru>)';
