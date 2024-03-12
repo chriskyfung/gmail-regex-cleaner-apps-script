@@ -56,6 +56,18 @@ function removeCorelAffiliateInfo() {
 }
 
 /**
+ * The function `removeGitHubDependabotAlerts()` removes "[GitHub] Your Dependabot alerts for the week of" from
+ * emails. The regex pattern is tailored to identify and extract date ranges in the "Month Day - Month Day" format
+ * from text data.
+ */
+function removeGitHubDependabotAlerts() {
+  const query = '"[GitHub] Your Dependabot alerts for the week of" from:(GitHub <noreply@github.com>)';
+  
+  const pattern = /(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{1,2} - ((Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{1,2})/gm;
+  main(query, pattern, false);
+}
+
+/**
  * The function `removeIATeamInfo` removes newly launched affiliate offers from emails received from
  * hello@involve.asia. The regex pattern looks for "Check out these new live offers" in the text.
  */
