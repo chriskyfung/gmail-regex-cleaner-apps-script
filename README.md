@@ -64,6 +64,14 @@ This is a Google Apps Script project that helps you delete old emails in Gmail t
 
 ## Development
 
+This project uses [ESLint](https://eslint.org/) for code linting and [Prettier](https://prettier.io/) for code formatting. It is recommended to run the linter before committing any changes.
+
+To run the linter, use the following command:
+
+```bash
+npm run lint
+```
+
 This project uses [Jest](https://jestjs.io/) for automated testing.
 
 To run the tests, use the following command:
