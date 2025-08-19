@@ -1,7 +1,4 @@
-const {
-  subtractYears,
-  checkOverdue
-} = require('./code.js');
+const { subtractYears, checkOverdue } = require('./code.js');
 
 describe('Core Functions', () => {
   describe('subtractYears', () => {
@@ -35,7 +32,7 @@ describe('Core Functions', () => {
       const dateString = 'December 1'; // No year
       const lastMessageDate = new Date('2025-02-10'); // Context date
       const result = checkOverdue(dateString, lastMessageDate, treshold);
-      
+
       // It should determine the date is 2024-12-01, which is overdue.
       expect(result.expiryDate.getFullYear()).toBe(2024);
       expect(result.isOverdue).toBe(true);

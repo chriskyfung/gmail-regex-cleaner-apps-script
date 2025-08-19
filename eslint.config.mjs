@@ -3,6 +3,7 @@ import js from "@eslint/js";
 import gasPlugin from "eslint-plugin-googleappsscript";
 import pluginPrettier from "eslint-plugin-prettier";
 import prettierConfig from "eslint-config-prettier";
+import jest from "eslint-plugin-jest";
 
 export default [
   // Global ignores
@@ -13,34 +14,75 @@ export default [
   // Base JavaScript configuration
   js.configs.recommended,
 
-  // Google Apps Script specific configuration
+  // Google Apps Script configuration for src/code.js
   {
-    files: ["src/**/*.js"],
+    files: ["src/code.js"],
     plugins: {
       gas: gasPlugin,
     },
     languageOptions: {
-      ecmaVersion: 2021, // GAS supports up to ES2021 features
-      sourceType: "script", // GAS uses script format, not module
+      ecmaVersion: 2021,
+      sourceType: "script",
       globals: {
-        ...globals.googleapps, // Use the correct GAS environment globals
+        ...globals.googleapps,
         ...gasPlugin.environments.googleappsscript.globals,
+        module: "writable", // For CommonJS compatibility in tests
       },
     },
     rules: {
-      // Basic rules for clean code
       "no-unused-vars": "warn",
       "no-var": "error",
       "prefer-const": "error",
-      "prefer-arrow-callback": "error",
-      "arrow-spacing": "error",
+    },
+  },
 
-      // GAS-specific rules
-      "no-alert": "error",
-      "no-implied-eval": "error",
-      "no-new-func": "error",
+  // Google Apps Script configuration for src/examples.js
+  {
+    files: ["src/examples.js"],
+    plugins: {
+      gas: gasPlugin,
+    },
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: "script",
+      globals: {
+        ...globals.googleapps,
+        ...gasPlugin.environments.googleappsscript.globals,
+        main: "readonly", // main is defined in code.js
+      },
+    },
+    rules: {
+      "no-unused-vars": [
+        "warn",
+        { args: "none", varsIgnorePattern: "^remove" },
+      ],
+      "no-var": "error",
+      "prefer-const": "error",
+    },
+  },
 
-      // Add additional rules as needed for your project
+  // Jest test configuration
+  {
+    files: ["src/**/*.test.js"],
+    ...jest.configs["flat/recommended"],
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
+    },
+    rules: {
+      ...jest.configs["flat/recommended"].rules,
+      "jest/prefer-expect-assertions": "off",
+    },
+  },
+
+  // Node.js specific configuration (for test files)
+  {
+    files: ["src/**/*.test.js"],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
     },
   },
 

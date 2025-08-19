@@ -8,7 +8,7 @@
  * @returns The formatted last message date in the format 'yyyy-MM-dd'.
  */
 const getLastMessageDate = (dummy, lastMessageDate) => {
-    return Utilities.formatDate(lastMessageDate, 'GMT', 'yyyy-MM-dd');
+  return Utilities.formatDate(lastMessageDate, 'GMT', 'yyyy-MM-dd');
 };
 
 /**
@@ -30,8 +30,8 @@ function findMessages(queryString) {
       firstMessageSubject: thread.getFirstMessageSubject(),
       lastMessageDate: thread.getLastMessageDate(),
       plainBody: messages[messages.length - 1].getPlainBody(),
-      moveToTrash: thread.moveToTrash
-    }
+      moveToTrash: thread.moveToTrash,
+    };
   });
 }
 
@@ -48,7 +48,7 @@ function checkOverdue(dateString, lastMessageDate, tresholdInDays) {
   const millisecondsPerDay = 86400000;
   const containsYear = /\d{4}/.test(dateString);
 
-  let date = new Date(dateString);
+  const date = new Date(dateString);
 
   if (!containsYear) {
     // If no year is in the string, set it to the year of the last message for context.
@@ -60,14 +60,14 @@ function checkOverdue(dateString, lastMessageDate, tresholdInDays) {
       date.setFullYear(date.getFullYear() - 1);
     }
   }
-  
-  const diff = (now - date)/millisecondsPerDay;
+
+  const diff = (now - date) / millisecondsPerDay;
 
   return {
     expiryDate: date,
     daysDiff: diff,
-    isOverdue: diff > tresholdInDays
-  }
+    isOverdue: diff > tresholdInDays,
+  };
 }
 
 /**
@@ -81,7 +81,7 @@ function checkOverdue(dateString, lastMessageDate, tresholdInDays) {
  * named capture group from the first match found in the `text` string.
  */
 function findMatchGroup(text, pattern) {
-  if (!pattern instanceof RegExp) {
+  if ((!pattern) instanceof RegExp) {
     throw 'Invalid type: `pattern` is not a RegExp!';
   }
   const result = pattern.exec(text);
@@ -101,7 +101,6 @@ function subtractYears(date, years) {
   return newDate;
 }
 
-
 /**
  * The main function searches for messages that match a given query string, extracts text using a
  * pattern, and checks if the extracted text is overdue based on a date formatter function.
@@ -116,17 +115,25 @@ function subtractYears(date, years) {
  * @param {boolean} [options.isDryRun=true] - Whether to run in test mode without deleting emails.
  * @param {function} [options.dateFormatter] - A function to format the extracted date string.
  */
-function main(queryString, pattern, { tresholdInDays = 60, isDryRun = true, dateFormatter = getLastMessageDate } = {}) {
-  if (! dateFormatter instanceof Function) {  
+function main(
+  queryString,
+  pattern,
+  {
+    tresholdInDays = 60,
+    isDryRun = true,
+    dateFormatter = getLastMessageDate,
+  } = {}
+) {
+  if ((!dateFormatter) instanceof Function) {
     throw 'Invalid type: `dateFormatter` is not a function!';
   }
 
   const threads = findMessages(queryString);
-  threads.forEach(thread => {
+  threads.forEach((thread) => {
     try {
-      const {firstMessageSubject, lastMessageDate, plainBody} = thread;
+      const { firstMessageSubject, lastMessageDate, plainBody } = thread;
       console.log(firstMessageSubject);
-  
+
       const textExtracted = findMatchGroup(plainBody, pattern);
       if (textExtracted === null) {
         return;
@@ -135,19 +142,25 @@ function main(queryString, pattern, { tresholdInDays = 60, isDryRun = true, date
       if (!dateString) {
         return;
       }
-      
-      const {expiryDate, daysDiff, isOverdue} = checkOverdue(dateString, lastMessageDate, tresholdInDays);
+
+      const { expiryDate, daysDiff, isOverdue } = checkOverdue(
+        dateString,
+        lastMessageDate,
+        tresholdInDays
+      );
       console.log({
         expiryDate: Utilities.formatDate(expiryDate, 'GMT', 'yyyy-MMM-dd'),
         daysAgo: daysDiff,
-        overdue: isOverdue
+        overdue: isOverdue,
       });
       if (isOverdue && !isDryRun) {
         thread.moveToTrash();
         console.log('Moved to trash');
       }
     } catch (e) {
-      console.error(`Error processing thread with subject: "${thread.firstMessageSubject}". Error: ${e.message}`);
+      console.error(
+        `Error processing thread with subject: "${thread.firstMessageSubject}". Error: ${e.message}`
+      );
     }
   });
 }
@@ -159,6 +172,6 @@ if (typeof module !== 'undefined') {
     findMatchGroup,
     getLastMessageDate,
     findMessages,
-    main
+    main,
   };
 }
