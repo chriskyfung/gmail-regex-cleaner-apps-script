@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "description": "A Google Apps Script that helps you delete Gmail messages older than n days that match your custom regex filters.",
-  
   "scripts": {
+    "build": "node scripts/build.mjs",
+    "clean": "rm -rf dist",
+    "update-timezone": "node scripts/update-timezone.mjs",
     "lint": "eslint src/**/*.js",
     "format": "prettier --write 'src/**/*.js'",
     "login": "clasp login",
@@ -45,6 +47,11 @@
       "url": "https://www.buymeacoffee.com/chrisfungky"
     }
   ],
+  "config": {
+    "examples": {
+      "exclude": []
+    }
+  },
   "engines": {
     "node": ">=14.18.0",
     "npm": ">=6.14.15"
@@ -52,6 +59,8 @@
   "devDependencies": {
     "@eslint/js": "^9.33.0",
     "@google/clasp": "^2.5.0",
+    "@rollup/plugin-replace": "^6.0.2",
+    "@rollup/plugin-strip": "^3.0.4",
     "@types/google-apps-script": "^1.0.99",
     "@types/jest": "^30.0.0",
     "eslint": "^9.33.0",
@@ -61,6 +70,8 @@
     "gas-mock-globals": "^2.2.0",
     "globals": "^16.3.0",
     "jest": "^30.0.5",
-    "prettier": "^3.6.2"
+    "prettier": "^3.6.2",
+    "rollup": "^4.46.3",
+    "rollup-plugin-copy": "^3.5.0"
   }
 }
