@@ -17,7 +17,7 @@
     "deployments": "clasp deployments",
     "versions": "clasp versions",
     "logs": "clasp logs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -53,11 +53,14 @@
     "@eslint/js": "^9.33.0",
     "@google/clasp": "^2.5.0",
     "@types/google-apps-script": "^1.0.99",
+    "@types/jest": "^30.0.0",
     "eslint": "^9.33.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-googleappsscript": "^1.0.5",
     "eslint-plugin-prettier": "^5.5.4",
+    "gas-mock-globals": "^2.2.0",
     "globals": "^16.3.0",
+    "jest": "^30.0.5",
     "prettier": "^3.6.2"
   }
 }
