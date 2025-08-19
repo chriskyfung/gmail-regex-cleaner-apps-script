@@ -48,6 +48,6 @@
   },
   "devDependencies": {
     "@google/clasp": "^2.5.0",
-    "@types/google-apps-script": "^1.0.56"
+    "@types/google-apps-script": "^1.0.99"
   }
 }
