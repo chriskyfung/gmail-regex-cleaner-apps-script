@@ -18,9 +18,12 @@ async function build() {
   // Post-process dist/code.js to remove Node-specific code
   const codePath = path.join(distDir, 'code.js');
   let code = fs.readFileSync(codePath, 'utf8');
-  const startIndex = code.indexOf("if (typeof module !== 'undefined')");
-  if (startIndex !== -1) {
-    code = code.slice(0, startIndex);
+  const startIndex = code.indexOf(
+    "if (typeof module !== 'undefined' && module.exports)"
+  );
+  const endIndex = code.indexOf('	}\n', startIndex);
+  if (startIndex !== -1 && endIndex !== -1) {
+    code = code.slice(0, startIndex) + code.slice(endIndex + 3);
     fs.writeFileSync(codePath, code.trim());
   }
 
