@@ -182,13 +182,20 @@ function main(
   });
 }
 
-if (typeof module !== 'undefined') {
+globalThis.subtractYears = subtractYears;
+globalThis.checkOverdue = checkOverdue;
+globalThis.findMatchGroup = findMatchGroup;
+globalThis.getLastMessageDate = getLastMessageDate;
+globalThis.findMessages = findMessages;
+globalThis.main = main;
+
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     subtractYears,
     checkOverdue,
+    findMessages,
     findMatchGroup,
     getLastMessageDate,
-    findMessages,
     main,
   };
 }

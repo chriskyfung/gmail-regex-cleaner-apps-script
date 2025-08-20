@@ -2,10 +2,15 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 
 export default {
-  input: ['src/code.js', 'src/examples.js'],
+  input: 'src/code.js',
   output: {
-    dir: 'dist',
-    format: 'esm',
+    file: 'dist/code.js',
+    format: 'iife',
   },
-  plugins: [resolve(), commonjs()],
+  plugins: [
+    resolve({
+      browser: true,
+    }),
+    commonjs(),
+  ],
 };
