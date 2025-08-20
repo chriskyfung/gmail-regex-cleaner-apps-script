@@ -21,15 +21,23 @@ const getLastMessageDate = (dummy, lastMessageDate) => {
  * @returns The function `findMessages` returns an array of objects. Each object represents a thread in
  * Gmail and contains the following properties:
  */
-function findMessages(queryString) {
+function findMessages(queryString, mode = 'plain') {
   const threads = GmailApp.search(queryString);
 
   return threads.map((thread) => {
     const messages = thread.getMessages();
+    const body =
+      mode.toLowerCase() !== 'html'
+        ? messages[messages.length - 1].getPlainBody()
+        : messages[messages.length - 1]
+            .getBody()
+            .split('</head>')
+            .filter((item) => item.includes('<body'))[0]
+            .replace(/<[^>]*>/g, '');
     return {
       firstMessageSubject: thread.getFirstMessageSubject(),
       lastMessageDate: thread.getLastMessageDate(),
-      plainBody: messages[messages.length - 1].getPlainBody(),
+      plainBody: body,
       moveToTrash: thread.moveToTrash,
     };
   });
@@ -113,6 +121,7 @@ function subtractYears(date, years) {
  * @param {object} [options] - Optional parameters.
  * @param {number} [options.tresholdInDays=60] - The number of days to keep emails.
  * @param {boolean} [options.isDryRun=true] - Whether to run in test mode without deleting emails.
+ * @param {string} [options.mode='plain'] - The mode to use for processing emails (e.g., 'plain' or 'html').
  * @param {function} [options.dateFormatter] - A function to format the extracted date string.
  */
 function main(
@@ -121,6 +130,7 @@ function main(
   {
     tresholdInDays = 60,
     isDryRun = true,
+    mode = 'plain',
     dateFormatter = getLastMessageDate,
   } = {}
 ) {
@@ -128,7 +138,7 @@ function main(
     throw 'Invalid type: `dateFormatter` is not a function!';
   }
 
-  const threads = findMessages(queryString);
+  const threads = findMessages(queryString, mode);
   threads.forEach((thread) => {
     try {
       const { firstMessageSubject, lastMessageDate, plainBody } = thread;

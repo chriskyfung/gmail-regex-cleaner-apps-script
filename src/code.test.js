@@ -1,4 +1,8 @@
-const { subtractYears, checkOverdue } = require('./code.js');
+const {
+  subtractYears,
+  checkOverdue,
+  findMessages,
+} = require('./code.js');
 
 describe('Core Functions', () => {
   describe('subtractYears', () => {
@@ -55,5 +59,56 @@ describe('Core Functions', () => {
       expect(result.expiryDate.getFullYear()).toBe(2026);
       expect(result.isOverdue).toBe(false);
     });
+  });
+});
+
+describe('findMessages', () => {
+  const mockGetPlainBody = jest.fn();
+  const mockGetBody = jest.fn();
+  const mockGetFirstMessageSubject = jest.fn();
+  const mockGetLastMessageDate = jest.fn();
+  const mockMoveToTrash = jest.fn();
+
+  const mockMessage = {
+    getPlainBody: mockGetPlainBody,
+    getBody: mockGetBody,
+  };
+
+  const mockThread = {
+    getMessages: () => [mockMessage, mockMessage], // getMessages returns an array of messages
+    getFirstMessageSubject: mockGetFirstMessageSubject,
+    getLastMessageDate: mockGetLastMessageDate,
+    moveToTrash: mockMoveToTrash,
+  };
+
+  global.GmailApp = {
+    search: jest.fn(() => [mockThread]),
+  };
+
+  beforeEach(() => {
+    // Clear all mocks before each test
+    jest.clearAllMocks();
+  });
+
+  it('should use getPlainBody when mode is "plain"', () => {
+    findMessages('some query', 'plain');
+    expect(mockGetPlainBody).toHaveBeenCalled();
+    expect(mockGetBody).not.toHaveBeenCalled();
+  });
+
+  it('should use getPlainBody when mode is not provided', () => {
+    findMessages('some query'); // mode is undefined
+    expect(mockGetPlainBody).toHaveBeenCalled();
+    expect(mockGetBody).not.toHaveBeenCalled();
+  });
+
+  it('should use getBody and parse it when mode is "html"', () => {
+    const htmlBody =
+      '<html><head>header</head><body><p>Hello</p></body></html>';
+    mockGetBody.mockReturnValue(htmlBody);
+    const result = findMessages('some query', 'html');
+    expect(mockGetBody).toHaveBeenCalled();
+    expect(mockGetPlainBody).not.toHaveBeenCalled();
+    expect(result[0].plainBody).toBe('Hello');
   });
 });

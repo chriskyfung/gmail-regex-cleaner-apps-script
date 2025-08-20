@@ -15,7 +15,7 @@ function removeAboutMeWeeklyStats() {
  * "system@affiliates.one". The pattern matches the phrase "已暫停推 soension.
  */
 function removeAffiliatesOne() {
-  const query = 'from:(system@affiliates.one) subject:已暫停推廣';
+  const query = 'from:(op@affiliates.one) subject:已暫停推廣';
   const pattern = /已暫停推廣/m;
   main(query, pattern, { isDryRun: false });
 }
@@ -30,7 +30,8 @@ function removeAffiliatesOne() {
 function removeBrookstoneAffiliateInfo() {
   const query = 'from:(owner-membermessaging@mx6.cj.com) subject:(Brookstone)';
   const datePattern =
-    /Brookstone:[\w\s\d!$%-/]*?(?<exp>(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{1,2}-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)?\s?\d{1,2})/gm;
+    // eslint-disable-next-line no-useless-escape
+    /Brookstone:[\w\s\d!$%\/-]*?(?<exp>(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{1,2}-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)?\s?\d{1,2})/gm;
   const dateFormatter = (textWithDate, lastMessageDate) => {
     const year = Utilities.formatDate(lastMessageDate, 'GMT', 'yyyy');
     const re = /(?<month1>\w{3})\s\d+-(?<month2>\w{3})?\s?(?<enddate>\d+)/;
@@ -89,7 +90,7 @@ function removeIATeamInfo() {
  * and have a date in the format "yyyy年mm月dd日或之前".
  */
 function removeMoneyHeroInfo() {
-  const query = 'from:(MoneyHero <reply@em.moneyhero.com.hk>) is:trash';
+  const query = 'from:(MoneyHero <noreply@promo.moneyhero.com.hk>) is:trash';
   const datePattern = /\d{4}年\d{1,2}月\d{1,2}日或之前/gm;
   const dateFormatter = (textWithDate, lastMessageDate) => {
     const re =
@@ -110,8 +111,7 @@ function removeMoneyHeroInfo() {
  * into named groups "month1" and "enddate", respectively.
  */
 function removeNamecheapAffiliateInfo() {
-  const query =
-    'from:(Namecheap Affiliate Team<owner-membermessaging@mx6.cj.com>) -label:affiliate-program';
+  const query = 'from:(Namecheap Affiliate Team) -label:affiliate-program';
   const datePattern =
     /(?<exp>(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}-\d{1,2}\.?$)/gm;
   const dateFormatter = (textWithDate, lastMessageDate) => {
@@ -123,7 +123,7 @@ function removeNamecheapAffiliateInfo() {
     }
     return `${year}-${matches.groups.month1}.${matches.groups.enddate}`;
   };
-  main(query, datePattern, { isDryRun: false, dateFormatter });
+  main(query, datePattern, { isDryRun: false, mode: 'html', dateFormatter });
 }
 
 /**

@@ -29,6 +29,7 @@ This is a Google Apps Script project that helps you delete old emails in Gmail t
       main(query, regex, {
         tresholdInDays: 90, // Optional: default is 60
         isDryRun: true,     // Optional: default is true
+        mode: 'html',       // Optional: default is 'plain'
         dateFormatter: (textWithDate, lastMessageDate) => {
           /*
             Your code to extract and format the date part to a date string
@@ -50,6 +51,7 @@ This is a Google Apps Script project that helps you delete old emails in Gmail t
 >
 > - **`tresholdInDays`**: The number of days to keep emails. Defaults to `60`.
 > - **`isDryRun`**: A boolean value that indicates whether to run the script in test mode or not. If `true` (the default), the script will only log the emails that match the query and the regex, but will not delete them. If `false`, the script will delete the emails permanently. It is recommended to run the script with `isDryRun` set to `true` first to make sure it works as expected.
+> - **`mode`**: A string that specifies whether to process the email body as plain text or HTML. Can be either `'plain'` (default) or `'html'`. If set to `'html'`, the script will strip all HTML tags from the email body before searching for the regex pattern.
 > - **`dateFormatter`**: A function that takes two parameters: `textWithDate` and `lastMessageDate`. The `textWithDate` is a string that contains the date part extracted from the email body. The `lastMessageDate` is a date object that represents the latest date of the email thread. The function should return a date string like `yyyy-MM-dd` that can be parsed by `new Date()`.
 
 4. Save and run the desired function from the script editor. You can use the **Run** menu or the **Run** button in the toolbar.
