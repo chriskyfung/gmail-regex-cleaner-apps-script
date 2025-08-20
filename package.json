@@ -1,6 +1,6 @@
 {
   "name": "gmail-regex-cleaner-apps-script",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "A Google Apps Script that helps you delete Gmail messages older than n days that match your custom regex filters.",
   "scripts": {
