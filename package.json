@@ -63,8 +63,6 @@
     "@google/clasp": "^2.5.0",
     "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-node-resolve": "^16.0.1",
-    "@rollup/plugin-replace": "^6.0.2",
-    "@rollup/plugin-strip": "^3.0.4",
     "@types/google-apps-script": "^1.0.99",
     "@types/jest": "^30.0.0",
     "@types/sanitize-html": "^2.16.0",
@@ -77,8 +75,7 @@
     "globals": "^16.3.0",
     "jest": "^30.0.5",
     "prettier": "^3.6.2",
-    "rollup": "^4.46.3",
-    "rollup-plugin-copy": "^3.5.0"
+    "rollup": "^4.46.3"
   },
   "dependencies": {
     "sanitize-html": "^2.17.0"
