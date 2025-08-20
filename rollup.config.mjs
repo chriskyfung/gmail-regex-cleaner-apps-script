@@ -1,14 +1,11 @@
-import copy from 'rollup-plugin-copy';
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
 
 export default {
-  input: ['src/code.js'],
+  input: ['src/code.js', 'src/examples.js'],
   output: {
     dir: 'dist',
     format: 'esm',
   },
-  plugins: [
-    copy({
-      targets: [{ src: 'src/appsscript.json', dest: 'dist' }],
-    }),
-  ],
+  plugins: [resolve(), commonjs()],
 };

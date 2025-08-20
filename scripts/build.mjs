@@ -47,6 +47,9 @@ async function build() {
 
   fs.writeFileSync(examplesDestPath, includedFunctions.join('\n\n'));
 
+  // 3. Copy appsscript.json
+  fs.copyFileSync('src/appsscript.json', path.join(distDir, 'appsscript.json'));
+
   console.log('Build complete.');
   if (excludeList.length > 0) {
     console.log(

@@ -1,3 +1,5 @@
+import sanitizeHtml from 'sanitize-html';
+
 /**
  * The function `getLastMessageDate` formats a given date in the 'yyyy-MM-dd' format.
  * @param dummy - The "dummy" parameter is a placeholder variable that is not used in the function. It
@@ -26,15 +28,19 @@ function findMessages(queryString, mode = 'plain') {
 
   return threads.map((thread) => {
     const messages = thread.getMessages();
-    const body =
-      mode.toLowerCase() !== 'html'
-        ? messages[messages.length - 1].getPlainBody()
-        : messages[messages.length - 1]
-            .getBody()
-            .split('</head>')
-            .filter((item) => item.includes('<body'))[0]
-            .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-            .replace(/<[^>]*>/g, '');
+    const lastMessage = messages[messages.length - 1];
+    let body;
+    if (mode.toLowerCase() !== 'html') {
+      body = lastMessage.getPlainBody();
+    } else {
+      const htmlBody = lastMessage.getBody();
+      const bodyMatch = htmlBody.match(/<body[^>]*>([\s\S]*)<\/body>/);
+      const bodyContent = bodyMatch ? bodyMatch[1] : htmlBody;
+      body = sanitizeHtml(bodyContent, {
+        allowedTags: [],
+        allowedAttributes: {},
+      });
+    }
     return {
       firstMessageSubject: thread.getFirstMessageSubject(),
       lastMessageDate: thread.getLastMessageDate(),
