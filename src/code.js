@@ -33,6 +33,7 @@ function findMessages(queryString, mode = 'plain') {
             .getBody()
             .split('</head>')
             .filter((item) => item.includes('<body'))[0]
+            .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
             .replace(/<[^>]*>/g, '');
     return {
       firstMessageSubject: thread.getFirstMessageSubject(),
