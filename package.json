@@ -1,20 +1,25 @@
 {
   "name": "gmail-regex-cleaner-apps-script",
-  "version": "1.0.0",
+  "version": "0.2.0",
+  "private": true,
   "description": "A Google Apps Script that helps you delete Gmail messages older than n days that match your custom regex filters.",
-  "main": "index.js",
   "scripts": {
-    "login": "npx clasp login",
-    "logout": "npx clasp logout",
-    "pull": "npx clasp pull",
-    "push": "npx clasp push",
-    "push:watch": "npx clasp push -w",
-    "status": "npx clasp status",
-    "open": "npx clasp open",
-    "deployments": "npx clasp deployments",
-    "versions": "npx clasp versions",
-    "logs": "npx clasp logs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node scripts/build.mjs",
+    "clean": "rm -rf dist",
+    "update-timezone": "node scripts/update-timezone.mjs",
+    "lint": "eslint src/**/*.js",
+    "format": "prettier --write 'src/**/*.js'",
+    "login": "clasp login",
+    "logout": "clasp logout",
+    "pull": "clasp pull",
+    "push": "clasp push",
+    "push:watch": "clasp push -w",
+    "status": "clasp status",
+    "open": "clasp open",
+    "deployments": "clasp deployments",
+    "versions": "clasp versions",
+    "logs": "clasp logs",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -42,12 +47,32 @@
       "url": "https://www.buymeacoffee.com/chrisfungky"
     }
   ],
+  "config": {
+    "examples": {
+      "exclude": []
+    }
+  },
   "engines": {
     "node": ">=14.18.0",
     "npm": ">=6.14.15"
   },
   "devDependencies": {
+    "@eslint/js": "^9.33.0",
     "@google/clasp": "^2.5.0",
-    "@types/google-apps-script": "^1.0.99"
+    "@rollup/plugin-replace": "^6.0.2",
+    "@rollup/plugin-strip": "^3.0.4",
+    "@types/google-apps-script": "^1.0.99",
+    "@types/jest": "^30.0.0",
+    "eslint": "^9.33.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-googleappsscript": "^1.0.5",
+    "eslint-plugin-jest": "^29.0.1",
+    "eslint-plugin-prettier": "^5.5.4",
+    "gas-mock-globals": "^2.2.0",
+    "globals": "^16.3.0",
+    "jest": "^30.0.5",
+    "prettier": "^3.6.2",
+    "rollup": "^4.46.3",
+    "rollup-plugin-copy": "^3.5.0"
   }
 }
