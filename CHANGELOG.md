@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.2] - 2025-08-20
+
+### Fixed
+- Resolved test failures by exporting functions to be available in the Node.js test environment.
+
+### Changed
+- Updated the Rollup configuration to adjust the build process for a single entry point and IIFE output.
+- Configured tree shaking in Rollup to potentially reduce bundle size.
+- Improved the build script to more reliably remove Node.js-specific code from the final bundle.
+- Enhanced the date matching pattern in the Corel affiliate email example to be more flexible.
+
 ## [0.2.1] - 2025-08-20
 
 ### Fixed

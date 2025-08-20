@@ -22,7 +22,7 @@ export default [
     },
     languageOptions: {
       ecmaVersion: 2021,
-      sourceType: 'script',
+      sourceType: 'module',
       globals: {
         ...globals.googleapps,
         ...gasPlugin.environments.googleappsscript.globals,
