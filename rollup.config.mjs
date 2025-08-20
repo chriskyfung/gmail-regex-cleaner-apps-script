@@ -7,6 +7,9 @@ export default {
     file: 'dist/code.js',
     format: 'iife',
   },
+  treeshake: {
+    moduleSideEffects: 'no-external',
+  },
   plugins: [
     resolve({
       browser: true,
