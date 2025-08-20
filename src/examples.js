@@ -56,7 +56,7 @@ function removeBrookstoneAffiliateInfo() {
 function removeCorelAffiliateInfo() {
   const query = 'from:(Corel Corporation <owner-membermessaging@mx6.cj.com>)';
   const datePattern =
-    /Dates?\s?:\s?\d{1,2}[./]\d{1,2}[./]\d{2,4}\s?-\s?(?<exp>\d{1,2}[./]\d{1,2}[./]\d{2,4})/gm;
+    /Dates?\s?:.*(?<exp>(\d{1,2}|(January|February|March|April|May|June|July|August|September|October|November|December))[\s./]\d{1,2},?[\s./]\d{2,4})/gm;
   main(query, datePattern, { isDryRun: false });
 }
 
