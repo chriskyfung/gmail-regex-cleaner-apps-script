@@ -1,8 +1,4 @@
-const {
-  subtractYears,
-  checkOverdue,
-  findMessages,
-} = require('./code.js');
+const { subtractYears, checkOverdue, findMessages } = require('./code.js');
 
 describe('Core Functions', () => {
   describe('subtractYears', () => {
