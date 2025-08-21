@@ -104,19 +104,6 @@ function findMatchGroup(text, pattern) {
 }
 
 /**
- * The function subtracts a specified number of years from a given date without mutating the original date.
- * @param {Date} date - The date parameter is a JavaScript Date object, representing a specific date and time.
- * @param {number} years - The "years" parameter is the number of years that you want to subtract from the given
- * date.
- * @returns {Date} the updated date after subtracting the specified number of years.
- */
-function subtractYears(date, years) {
-  const newDate = new Date(date);
-  newDate.setFullYear(newDate.getFullYear() - years);
-  return newDate;
-}
-
-/**
  * The main function searches for messages that match a given query string, extracts text using a
  * pattern, and checks if the extracted text is overdue based on a date formatter function.
  * @param {string} queryString - The `queryString` parameter is a string that represents the search query used
@@ -182,7 +169,6 @@ function main(
   });
 }
 
-globalThis.subtractYears = subtractYears;
 globalThis.checkOverdue = checkOverdue;
 globalThis.findMatchGroup = findMatchGroup;
 globalThis.getLastMessageDate = getLastMessageDate;
@@ -191,7 +177,6 @@ globalThis.main = main;
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
-    subtractYears,
     checkOverdue,
     findMessages,
     findMatchGroup,

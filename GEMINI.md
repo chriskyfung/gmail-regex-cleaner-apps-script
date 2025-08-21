@@ -16,4 +16,14 @@ This is a Google Apps Script project for cleaning old emails in Gmail based on r
 2.  **Testing**: This project uses [Jest](https://jestjs.io/) for automated testing. Run `npm test` to execute the test suite.
 3.  **Code Style**: The project is configured with ESLint and Prettier for code quality and consistent formatting. Run `npm run lint` to check for any linting issues. Please adhere to the existing code style.
 4.  **TypeScript Migration**: The project is a good candidate for migration to TypeScript for improved type safety. If significant changes are made, consider proposing this migration.
-5.  **Commit Messages**: Use the GitMoji convention for commit messages (e.g., `✨ feat: ...`, `🐛 fix: ...`).
+5.  **Commit Messages**: Follow the GitMoji convention for commit messages. The format is `emoji type(scope): subject`. For a complete list of emojis and their meanings, refer to the [GitMoji website](https://gitmoji.dev).
+    -   Use lowercase for the subject line (after the colon).
+    -   **CI/Build System (`ci`, `chore`):**
+        -   Use `👷` for adding or updating the CI build system (e.g., GitHub Actions).
+        -   Use `🔧` for configuration file changes.
+        -   Use `🔨` for development script updates.
+        -   Example: `👷 ci: add new workflow`
+        -   Example: `🔧 chore(eslint): update eslint config`
+    -   **Documentation (`docs`):**
+        -   Use `📝` for adding or updating documentation.
+        -   Example: `📝 docs(readme): update installation instructions`
