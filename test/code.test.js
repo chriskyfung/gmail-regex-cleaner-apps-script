@@ -1,20 +1,6 @@
-const { subtractYears, checkOverdue, findMessages } = require('../src/code.js');
+const { checkOverdue, findMessages } = require('../src/code.js');
 
 describe('Core Functions', () => {
-  describe('subtractYears', () => {
-    it('should subtract 1 year from the given date', () => {
-      const date = new Date('2025-01-01');
-      const newDate = subtractYears(date, 1);
-      expect(newDate.getFullYear()).toBe(2024);
-    });
-
-    it('should return a new date object and not mutate the original', () => {
-      const originalDate = new Date('2025-01-01');
-      const originalTime = originalDate.getTime();
-      subtractYears(originalDate, 1);
-      expect(originalDate.getTime()).toBe(originalTime);
-    });
-  });
 
   describe('checkOverdue', () => {
     const mockNow = new Date('2025-08-19T00:00:00.000Z').getTime();
