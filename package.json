@@ -64,7 +64,7 @@
     "@google/clasp": "^2.5.0",
     "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-node-resolve": "^16.0.1",
-    "@types/google-apps-script": "^2.0.4",
+    "@types/google-apps-script": "^2.0.5",
     "@types/jest": "^30.0.0",
     "@types/sanitize-html": "^2.16.0",
     "babel-jest": "^30.0.5",
