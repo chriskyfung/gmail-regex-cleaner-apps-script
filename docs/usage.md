@@ -1,12 +1,4 @@
-# How to Use
-
-1.  Create a new Google Apps Script project in Google Drive.
-2.  Copy and paste the code from `dist/code.js` and `dist/examples.js` into the script editor.
-3.  From the `examples.js` file, choose a function that matches your needs, or create a new one. You can then run this function from the Apps Script editor.
-
-    For example, to run one of the pre-made functions, you would select it in the editor's function list and click **Run**.
-
-    The `main` function, which does the core work, has been updated to be more flexible. Here is how you would call it inside a custom function:
+The `main` function, which does the core work, has been updated to be more flexible. Here is how you would call it inside a custom function:
 
     ```js
     function removeOldGoogleAlerts() {
@@ -41,13 +33,7 @@
 > - **`isDryRun`**: A boolean value that indicates whether to run the script in test mode or not. If `true` (the default), the script will only log the emails that match the query and the regex, but will not delete them. If `false`, the script will delete the emails permanently. It is recommended to run the script with `isDryRun` set to `true` first to make sure it works as expected.
 > - **`mode`**: A string that specifies whether to process the email body as plain text or HTML. Can be either `'plain'` (default) or `'html'`. If set to `'html'`, the script will strip all HTML tags from the email body before searching for the regex pattern.
 > - **`dateFormatter`**: A function that takes two parameters: `textWithDate` and `lastMessageDate`. The `textWithDate` is a string that contains the date part extracted from the email body. The `lastMessageDate` is a date object that represents the latest date of the email thread. The function should return a date string like `yyyy-MM-dd` that can be parsed by `new Date()`.
+> > [!TIP]
+> > For common date formats, you can use the `dateFormatterFactory` function to create a `dateFormatter` for you. See the [Development Guide](./development.md#dateformatterfactory) for more details.
 
 4.  Save and run the desired function from the script editor. You can use the **Run** menu or the **Run** button in the toolbar.
-
-> [!IMPORTANT]
-> When running the script for the first time, you may need to authorize it to access your Gmail account.
-
-5.  Optionally, set up a trigger to run a function periodically. You can do this by clicking the **Triggers** icon in the left sidebar, then clicking the **Add a trigger** button, and choosing the options you want. For example, you can set the script to run every day, week, or month.
-
-> [!WARNING]
-> This script will delete your emails permanently, without moving them to the trash. Please use it with caution and make sure you have a backup of your important emails. You can run the script with the `isDryRun` option set to `true` first to see what emails will be deleted.
