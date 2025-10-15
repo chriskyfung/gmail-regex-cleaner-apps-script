@@ -1,5 +1,9 @@
 # Gmail Old Email Cleaner
 
+[![Build Status](https://github.com/chriskyfung/gmail-regex-cleaner-apps-script/actions/workflows/ci.yml/badge.svg)](https://github.com/chriskyfung/gmail-regex-cleaner-apps-script/actions/workflows/ci.yml)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](/LICENSE)
+
 This is a Google Apps Script project that helps you delete old emails in Gmail that match your custom regex filters. This can help you save space and keep your inbox organized.
 
 ## Features

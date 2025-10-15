@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.3] - 2025-10-15
+
+### Fixed
+- Potential fix for code scanning alert by adding `permissions` to the CI workflow.
+- Removed `appssscript.json` from `.gitignore` to allow `clasp` deployments.
+
+### Changed
+- Improved build process and configuration.
+- Grouped dependabot updates for npm and GitHub Actions.
+- Updated numerous development dependencies to their latest versions.
+
+### Removed
+- Removed the unused `subtractYears` function from the codebase.
+
+### CI
+- Implemented a new GitHub Actions workflow for continuous integration to improve code quality.
+
+### Documentation
+- Added comprehensive `usage.md` and `development.md` guides.
+- Expanded `GEMINI.md` with more details on gitmoji conventions.
+
 ## [0.2.2] - 2025-08-20
 
 ### Fixed
