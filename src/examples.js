@@ -1,3 +1,5 @@
+/* global dateFormatterFactory */
+
 /**
  * The function `removeAboutMeWeeklyStats()` removes weekly stats emails from about.me with the subject
  * line "your weekly stats from about.me" from the trash folder. The regex pattern looks for instances
