@@ -104,6 +104,32 @@ function findMatchGroup(text, pattern) {
 }
 
 /**
+ * Creates a date formatter function from a regular expression pattern.
+ * @param {RegExp} pattern - The regular expression to find the date parts.
+ * @param {boolean} [useLastMessageYear=true] - Whether to use the last message's year.
+ * @returns {function(string, Date): string|null} A function that takes text and last message date, and returns a formatted date string or null.
+ */
+function dateFormatterFactory(pattern, useLastMessageYear = true) {
+  return (textWithDate, lastMessageDate) => {
+    const matches = pattern.exec(textWithDate);
+    if (!matches) {
+      return null;
+    }
+    const { groups } = matches;
+    const year = useLastMessageYear
+      ? Utilities.formatDate(lastMessageDate, 'GMT', 'yyyy')
+      : groups.year;
+    const month = groups.month2 || groups.month1;
+    const day = groups.enddate;
+
+    if (day && month) {
+      return `${year}-${month}.${day}`;
+    }
+    return null;
+  };
+}
+
+/**
  * The main function searches for messages that match a given query string, extracts text using a
  * pattern, and checks if the extracted text is overdue based on a date formatter function.
  * @param {string} queryString - The `queryString` parameter is a string that represents the search query used
@@ -174,6 +200,7 @@ globalThis.findMatchGroup = findMatchGroup;
 globalThis.getLastMessageDate = getLastMessageDate;
 globalThis.findMessages = findMessages;
 globalThis.main = main;
+globalThis.dateFormatterFactory = dateFormatterFactory;
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
@@ -182,5 +209,6 @@ if (typeof module !== 'undefined' && module.exports) {
     findMatchGroup,
     getLastMessageDate,
     main,
+    dateFormatterFactory,
   };
 }

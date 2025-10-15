@@ -62,3 +62,22 @@ To update the timezone, run the following command **after** the build command:
 ```bash
 npm run update-timezone
 ```
+
+### `dateFormatterFactory`
+
+The `dateFormatterFactory` function is a helper function that creates a `dateFormatter` function for you. It takes a regular expression pattern and an optional boolean `useLastMessageYear` as arguments.
+
+The pattern should contain named capture groups for `year`, `month1`, `month2` (optional), and `enddate`. The factory will then generate a function that extracts these parts from a date string and returns a formatted date string.
+
+Here is an example of how to use it:
+
+```js
+const dateFormatter = dateFormatterFactory(
+  /(?<month1>\w{3})\s\d+-(?<month2>\w{3})?\s?(?<enddate>\d+)/
+);
+
+// The generated dateFormatter can then be passed to the main function.
+main(query, pattern, { dateFormatter });
+```
+
+This is useful for creating complex date formatters without writing the same boilerplate code every time.

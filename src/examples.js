@@ -1,3 +1,5 @@
+/* global dateFormatterFactory */
+
 /**
  * The function `removeAboutMeWeeklyStats()` removes weekly stats emails from about.me with the subject
  * line "your weekly stats from about.me" from the trash folder. The regex pattern looks for instances
@@ -32,19 +34,9 @@ function removeBrookstoneAffiliateInfo() {
   const datePattern =
     // eslint-disable-next-line no-useless-escape
     /Brookstone:[\w\s\d!$%\/-]*?(?<exp>(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{1,2}-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)?\s?\d{1,2})/gm;
-  const dateFormatter = (textWithDate, lastMessageDate) => {
-    const year = Utilities.formatDate(lastMessageDate, 'GMT', 'yyyy');
-    const re = /(?<month1>\w{3})\s\d+-(?<month2>\w{3})?\s?(?<enddate>\d+)/;
-    const matches = re.exec(textWithDate);
-    if (!matches) {
-      return null;
-    }
-    if (matches.groups.month2) {
-      return `${year}-${matches.groups.month2}.${matches.groups.enddate}`;
-    } else {
-      return `${year}-${matches.groups.month1}.${matches.groups.enddate}`;
-    }
-  };
+  const dateFormatter = dateFormatterFactory(
+    /(?<month1>\w{3})\s\d+-(?<month2>\w{3})?\s?(?<enddate>\d+)/
+  );
   main(query, datePattern, { isDryRun: false, dateFormatter });
 }
 
@@ -92,15 +84,10 @@ function removeIATeamInfo() {
 function removeMoneyHeroInfo() {
   const query = 'from:(MoneyHero <noreply@promo.moneyhero.com.hk>) is:trash';
   const datePattern = /\d{4}年\d{1,2}月\d{1,2}日或之前/gm;
-  const dateFormatter = (textWithDate, lastMessageDate) => {
-    const re =
-      /(?<year>\d{4})年(?<month1>\d{1,2})月(?<enddate>\d{1,2})日或之前/;
-    const matches = re.exec(textWithDate);
-    if (!matches) {
-      return null;
-    }
-    return `${matches.groups.year}-${matches.groups.month1}.${matches.groups.enddate}`;
-  };
+  const dateFormatter = dateFormatterFactory(
+    /(?<year>\d{4})年(?<month1>\d{1,2})月(?<enddate>\d{1,2})日或之前/,
+    false
+  );
   main(query, datePattern, { isDryRun: false, dateFormatter });
 }
 
@@ -114,15 +101,9 @@ function removeNamecheapAffiliateInfo() {
   const query = 'from:(Namecheap Affiliate Team) -label:affiliate-program';
   const datePattern =
     /(?<exp>(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}-\d{1,2}\.?$)/gm;
-  const dateFormatter = (textWithDate, lastMessageDate) => {
-    const year = Utilities.formatDate(lastMessageDate, 'GMT', 'yyyy');
-    const re = /(?<month1>\w+)\s(\d+-)?s?(?<enddate>\d+)/;
-    const matches = re.exec(textWithDate);
-    if (!matches) {
-      return null;
-    }
-    return `${year}-${matches.groups.month1}.${matches.groups.enddate}`;
-  };
+  const dateFormatter = dateFormatterFactory(
+    /(?<month1>\w+)\s(\d+-)?s?(?<enddate>\d+)/
+  );
   main(query, datePattern, { isDryRun: false, mode: 'html', dateFormatter });
 }
 
@@ -146,18 +127,8 @@ function removeWondershareAffiliateInfo() {
 function removeYandexWebmasterInfo() {
   const query = 'from:(Yandex.Webmaster <devnull@webmaster.yandex.ru>)';
   const datePattern = /for the week of (?<exp>\d{1,2} ?\w* \W \d{1,2} \w+)/gm;
-  const dateFormatter = (textWithDate, lastMessageDate) => {
-    const year = Utilities.formatDate(lastMessageDate, 'GMT', 'yyyy');
-    const re = /\d{1,2} ?(?<month1>\w*) \W ?(?<enddate>\d{1,2}) (?<month2>\w+)/;
-    const matches = re.exec(textWithDate);
-    if (!matches) {
-      return null;
-    }
-    if (matches.groups.month2) {
-      return `${year}-${matches.groups.month2}.${matches.groups.enddate}`;
-    } else {
-      return `${year}-${matches.groups.month1}.${matches.groups.enddate}`;
-    }
-  };
+  const dateFormatter = dateFormatterFactory(
+    /\d{1,2} ?(?<month1>\w*) \W ?(?<enddate>\d{1,2}) (?<month2>\w+)/
+  );
   main(query, datePattern, { isDryRun: false, dateFormatter });
 }
