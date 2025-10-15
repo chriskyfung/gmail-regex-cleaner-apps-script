@@ -1,4 +1,4 @@
-const { checkOverdue, findMessages } = require('../src/code.js');
+const { checkOverdue, findMessages, dateFormatterFactory } = require('../src/code.js');
 
 describe('Core Functions', () => {
 
@@ -92,5 +92,61 @@ describe('findMessages', () => {
     expect(mockGetBody).toHaveBeenCalled();
     expect(mockGetPlainBody).not.toHaveBeenCalled();
     expect(result[0].plainBody).toBe('Hello');
+  });
+});
+
+describe('dateFormatterFactory', () => {
+  global.Utilities = {
+    formatDate: jest.fn((date, timeZone, format) => {
+      if (format === 'yyyy') {
+        return date.getFullYear().toString();
+      }
+      return '';
+    }),
+  };
+
+  it('should return a function', () => {
+    const pattern = /a/;
+    const formatter = dateFormatterFactory(pattern);
+    expect(typeof formatter).toBe('function');
+  });
+
+  it('should return null if pattern does not match', () => {
+    const pattern = /a/;
+    const formatter = dateFormatterFactory(pattern);
+    const result = formatter('b', new Date());
+    expect(result).toBeNull();
+  });
+
+  it('should format date correctly using last message year', () => {
+    const pattern = /(?<month1>\w{3})\s(?<enddate>\d{1,2})/;
+    const formatter = dateFormatterFactory(pattern);
+    const lastMessageDate = new Date('2023-01-01');
+    const result = formatter('Jan 15', lastMessageDate);
+    expect(result).toBe('2023-Jan.15');
+  });
+
+  it('should format date correctly using year from pattern', () => {
+    const pattern = /(?<year>\d{4})-(?<month1>\w{3})-(?<enddate>\d{1,2})/;
+    const formatter = dateFormatterFactory(pattern, false);
+    const result = formatter('2024-Feb-20', new Date());
+    expect(result).toBe('2024-Feb.20');
+  });
+
+  it('should use month2 if available', () => {
+    const pattern =
+      /(?<month1>\w{3})\s\d{1,2}\s-\s(?<month2>\w{3})\s(?<enddate>\d{1,2})/;
+    const formatter = dateFormatterFactory(pattern);
+    const lastMessageDate = new Date('2023-01-01');
+    const result = formatter('Jan 10 - Feb 20', lastMessageDate);
+    expect(result).toBe('2023-Feb.20');
+  });
+
+  it('should return null if day or month is missing', () => {
+    const pattern = /(?<month1>\w{3})/;
+    const formatter = dateFormatterFactory(pattern);
+    const lastMessageDate = new Date('2023-01-01');
+    const result = formatter('Jan', lastMessageDate);
+    expect(result).toBeNull();
   });
 });
