@@ -1,4 +1,4 @@
-# Gmail Old Email Cleaner
+# Gmail Regex Cleaner
 
 [![Build Status](https://github.com/chriskyfung/gmail-regex-cleaner-apps-script/actions/workflows/ci.yml/badge.svg)](https://github.com/chriskyfung/gmail-regex-cleaner-apps-script/actions/workflows/ci.yml)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
@@ -21,6 +21,12 @@ For detailed instructions on how to set up and use this script, please see the [
 ## Development
 
 This project uses ESLint for linting, Prettier for formatting, Jest for testing, and Rollup for building. For more details on the development setup and build process, please see the [**Development Guide**](./docs/development.md).
+
+## Contributing
+
+Contributions are welcome! Please read the [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) before contributing.
+
+If you have a bug report or a feature request, please open an issue on the [GitHub Issues page](https://github.com/chriskyfung/gmail-regex-cleaner-apps-script/issues).
 
 ## Disclaimer
 
