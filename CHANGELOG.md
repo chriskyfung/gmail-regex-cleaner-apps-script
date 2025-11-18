@@ -2,19 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.3.0] - 2025-10-15
 
 ### Added
 - Introduced `dateFormatterFactory` to reduce code duplication.
+- Added unit tests for `dateFormatterFactory`.
 
 ### Changed
 - Updated numerous development dependencies to their latest versions.
-
-### Test
-- Added unit tests for `dateFormatterFactory`.
 
 ### Documentation
 - Improved README with Quick Start and professional restructure.
@@ -31,12 +29,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved build process and configuration.
 - Grouped dependabot updates for npm and GitHub Actions.
 - Updated numerous development dependencies to their latest versions.
+- Implemented a new GitHub Actions workflow for continuous integration to improve code quality.
 
 ### Removed
 - Removed the unused `subtractYears` function from the codebase.
-
-### CI
-- Implemented a new GitHub Actions workflow for continuous integration to improve code quality.
 
 ### Documentation
 - Added comprehensive `usage.md` and `development.md` guides.
@@ -55,48 +51,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.1] - 2025-08-20
 
-### Fixed
-- ➖ chore(deps): remove gas-mock-globals to resolve security vulnerability in `lodash.set`.
+### Removed
+- Removed `gas-mock-globals` to resolve a security vulnerability in `lodash.set`.
 
 ### Changed
-- 🚚 chore(testing): move test file from `src/` to `test/` directory for better project structure.
+- Moved test file from `src/` to `test/` directory for better project structure.
 
 ## [0.2.0] - 2025-08-20
 
 ### Added
-- ✨ feat: add `mode` option to process emails as plain text or HTML
-- ✨ feat: implement testing and refactor core logic
-- 🔧 chore: Add build process for examples with exclusion
-- 🔧 chore(deps): add and configure ESLint and Prettier
-- 💚 ci(github): create dependabot.yml
-- Create FUNDING.yml
+- Add `mode` option to process emails as plain text or HTML.
+- Implement testing and refactor core logic.
+- Add build process for examples with exclusion.
+- Add and configure ESLint and Prettier.
+- Create `dependabot.yml` for CI.
+- Create `FUNDING.yml`.
 
 ### Fixed
-- 🔒️ fix: sanitize `<script>` tags from HTML using regex in `findMessages`
-- 🐛 fix: handle undefined mode in `findMessages`
-- 🐛 fix(examples): update queries for `removeAffiliatesOne` and `removeMoneyHeroInfo`
-- 🐛 fix(eslint): resolve all linting errors
+- Handle undefined mode in `findMessages`.
+- Update queries for `removeAffiliatesOne` and `removeMoneyHeroInfo` examples.
+- Resolve all linting errors.
+
+### Security
+- Sanitize `<script>` tags from HTML using regex in `findMessages`.
 
 ### Changed
-- 💡 refactor(examples): simplify query for `removeNamecheapAffiliateInfo`
-- build(deps-dev): Bump @types/google-apps-script from 1.0.78 to 1.0.99
-- build(deps-dev): Bump @google/clasp from 2.4.2 to 2.5.0
-- build(deps-dev): Bump braces from 3.0.2 to 3.0.3
+- Simplify query for `removeNamecheapAffiliateInfo` example.
+- Bump `@types/google-apps-script` from 1.0.78 to 1.0.99.
+- Bump `@google/clasp` from 2.4.2 to 2.5.0.
+- Bump `braces` from 3.0.2 to 3.0.3.
 
 ### Documentation
-- 📝 docs: update `README.md` with `mode` option
-- 📝 docs: update development guidelines
-- 📝 docs: update documentation and project files
+- Update `README.md` with `mode` option.
+- Update development guidelines.
+- Update documentation and project files.
 
 ## [0.1.0] - 2024-03-12
 
 ### Added
-- ✨ feat: add example for GitHub Dependabot alerts
-- 🎉 Initial commit
+- Add example for GitHub Dependabot alerts.
+- Initial commit.
 
 ### Changed
-- 💡 refactor: comment regex patterns in `examples.js`
+- Comment regex patterns in `examples.js`.
 
 ### Documentation
-- 📄 docs: create code of conduct
-- 📝 docs: add author's website URL to `package.json`
+- Create code of conduct.
+- Add author's website URL to `package.json`.
