@@ -81,5 +81,8 @@
   },
   "dependencies": {
     "sanitize-html": "^2.17.0"
+  },
+  "overrides": {
+    "glob": "^11.1.0"
   }
 }
