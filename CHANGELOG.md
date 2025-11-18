@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2025-11-18
+
+### Changed
+- Override `glob` dependency version to `^11.1.0` to mitigate potential security vulnerabilities or compatibility issues.
+- Bump `rimraf` from `6.0.1` to `6.1.0`.
+- Bump `@rollup/plugin-commonjs` from `28.0.7` to `28.0.8` and `rollup` from `4.52.4` to `4.52.5`.
+- Bump `js-yaml` from `3.14.1` to `3.14.2`.
+- Bump `@babel/core` from `7.28.4` to `7.28.5` and `@babel/preset-env` from `7.28.3` to `7.28.5`.
+- Bump `@eslint/js` from `9.37.0` to `9.39.1`, `eslint` from `9.37.0` to `9.39.1`, `eslint-plugin-jest` from `29.0.1` to `29.1.0` and `globals` from `16.4.0` to `16.5.0`.
+- Bump `@google/clasp` from `2.5.0` to `3.1.0`.
+- Bump `@types/google-apps-script` from `2.0.5` to `2.0.7`.
+- Bump `actions/setup-node` from `5` to `6`.
+
 ## [0.3.0] - 2025-10-15
 
 ### Added
