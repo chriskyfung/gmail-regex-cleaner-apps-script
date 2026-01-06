@@ -9,12 +9,14 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 5
+      semver-major-days: 30
+      semver-minor-days: 7
+      semver-patch-days: 3
     groups:
       production-dependencies:
         dependency-type: "production"
-      clasp:
-        patterns:
-          - "@google/clasp"
       eslint:
         patterns:
           - "*eslint*"
@@ -25,9 +27,6 @@ updates:
         patterns:
           - "*jest*"
           - "jest"
-      babel:
-        patterns:
-          - "*babel*"
       rollup:
         patterns:
           - "*rollup*"
@@ -37,18 +36,26 @@ updates:
       development-dependencies:
         dependency-type: "development"
         exclude-patterns:
-          - "@google/clasp"
           - "*eslint*"
           - "eslint"
           - "@eslint/js"
           - "globals"
           - "*jest*"
           - "jest"
-          - "*babel*"
           - "*rollup*"
           - "@types/*"
+    commit-message:
+      prefix: build
+      prefix-development: chore
+      include: scope
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      all-actions:
+        patterns:
+          - "*"
+    commit-message:
+      prefix: chore(github-actions)
