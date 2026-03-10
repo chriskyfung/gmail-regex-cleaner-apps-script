@@ -8,7 +8,7 @@
     "clean": "rimraf dist",
     "update-timezone": "node scripts/update-timezone.mjs",
     "lint": "eslint src/**/*.js",
-    "format": "prettier --write 'src/**/*.js'",
+    "format": "prettier --write src/**/*.js",
     "login": "clasp login",
     "logout": "clasp logout",
     "pull": "clasp pull",
