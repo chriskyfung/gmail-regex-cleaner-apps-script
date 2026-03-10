@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.3] - 2026-03-10
+
+### CI
+
+- Simplify node_modules caching in CI workflow.
+
+### Changed
+
+- Bump the eslint group with multiple updates (#88, #81, #76, #71, #67).
+- Bump the rollup group with multiple updates (#89, #84, #77, #72, #69).
+- Bump the development-dependencies group with multiple updates (#82, #78, #73, #70, #68).
+- Bump `sanitize-html` in the production-dependencies group (#80).
+- Bump `@types/sanitize-html` in the types group (#90).
+- Bump `hono` from 4.11.7 to 4.12.5 (#79, #83, #87).
+- Bump `@hono/node-server` from 1.19.9 to 1.19.10 (#86).
+- Bump `minimatch` (#85).
+- Bump `qs` from 6.14.1 to 6.14.2 (#75).
+- Bump `@modelcontextprotocol/sdk` from 1.24.0 to 1.26.0 (#74).
+
 ## [0.3.2] - 2026-01-06
 
 ### CI
