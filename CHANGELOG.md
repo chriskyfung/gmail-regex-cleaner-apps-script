@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.4] - 2026-03-31
+
+### CI
+
+- Drop Node.js 18 support and update engine requirements (#101).
+
+### Changed
+
+- Bump the rollup group with 1 update: rollup from 4.59.0 to 4.60.0 (#100).
+- Bump the eslint group with 2 updates: eslint from 10.0.3 to 10.1.0 and eslint-plugin-jest from 29.15.0 to 29.15.1 (#99).
+- Bump picomatch from 4.0.3 to 4.0.4 and 2.3.1 to 2.3.2 (#98).
+- Bump the development-dependencies group with 2 updates (#97).
+- Bump the jest group with 2 updates (#96).
+- Bump sanitize-html from 2.17.1 to 2.17.2 in the production-dependencies group (#95).
+- Bump flatted from 3.3.3 to 3.4.2 (#94).
+- Bump eslint from 10.0.0 to 10.0.3 in the eslint group (#93).
+- Bump hono from 4.12.5 to 4.12.7 (#92).
+
 ## [0.3.3] - 2026-03-10
 
 ### CI
