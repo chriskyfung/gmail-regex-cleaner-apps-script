@@ -80,7 +80,7 @@
     "rollup": "^4.60.1"
   },
   "dependencies": {
-    "sanitize-html": "^2.17.2"
+    "sanitize-html": "^2.17.3"
   },
   "overrides": {
     "glob": "^11.1.0"
