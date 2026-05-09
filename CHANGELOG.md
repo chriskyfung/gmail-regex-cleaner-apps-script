@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.5] - 2026-05-09
+
+### Changed
+
+- Bump @babel/plugin-transform-modules-systemjs from 7.29.0 to 7.29.4 (#118).
+- Bump fast-uri from 3.1.0 to 3.1.2 (#117).
+- Bump hono from 4.12.7 to 4.12.18 (#116, #107, #104).
+- Bump ip-address and express-rate-limit (#115).
+- Bump @babel/preset-env from 7.29.2 to 7.29.3 (#114).
+- Bump postcss from 8.5.6 to 8.5.12 (#113).
+- Bump the rollup group with 1 update: rollup from 4.60.1 to 4.60.2 (#112).
+- Bump the eslint group with multiple updates (#111, #109, #105).
+- Bump prettier from 3.8.1 to 3.8.3 (#110, #106).
+- Bump sanitize-html from 2.17.2 to 2.17.3 (#108).
+
 ## [0.3.4] - 2026-03-31
 
 ### CI
