@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.6] - 2026-05-19
+
+### CI
+
+- Extend cooldown period for all dependencies (#119).
+
+### Changed
+
+- Bump rollup from 4.60.3 to 4.60.4 in the rollup group (#124).
+- Bump sanitize-html from 2.17.3 to 2.17.4 in the production-dependencies group (#122).
+- Bump the jest group with 2 updates: babel-jest from 30.3.0 to 30.4.1 and jest from 30.3.0 to 30.4.2 (#123).
+- Bump @babel/preset-env from 7.29.3 to 7.29.5 in the development-dependencies group (#121).
+- Bump rollup from 4.60.2 to 4.60.3 in the rollup group (#120).
+- Bump the eslint group with 2 updates: eslint from 10.2.1 to 10.3.0 and globals from 17.5.0 to 17.6.0 (#119).
+
 ## [0.3.5] - 2026-05-09
 
 ### Changed
