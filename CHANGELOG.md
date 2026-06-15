@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.7] - 2026-06-16
+
+### Security
+
+- Bump and override `uuid` to `^11.1.1` for CVE-2026-41907 to address security vulnerability CVE-2026-41907 (#128).
+
+### Changed
+
+- Bump `sanitize-html` from 2.17.4 to 2.17.5 (#134) and `qs` from 6.14.2 to 6.15.2 (#125) in production dependencies.
+- Bump `prettier` from 3.8.3 to 3.8.4 (#136), `hono` from 4.12.18 to 4.12.23 (#132), and the development-dependencies group with 2 updates: `@babel/core` from 7.29.0 to 7.29.7 and `@babel/preset-env` from 7.29.5 to 7.29.7 (#131).
+- Bump the rollup group with 2 updates: `rollup` from 4.60.4 to 4.61.0 (#133) and `@rollup/plugin-commonjs` from 29.0.2 to 29.0.3 (#130).
+- Bump the eslint group with 3 updates: `eslint` from 10.4.0 to 10.4.1 (#129) and from 10.3.0 to 10.4.0 (#126), and `eslint-plugin-prettier` from 5.5.5 to 5.5.6 (#129).
+- Bump `@types/google-apps-script` from 2.0.9 to 2.0.11 (#135) and from 2.0.8 to 2.0.9 (#127) in the types group.
+
 ## [0.3.6] - 2026-05-19
 
 ### CI
