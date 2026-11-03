@@ -54,9 +54,9 @@
     }
   },
   "engines": {
-    "node": "^20.19.0 || ^22.13.0 || >=24.0.0",
-    "npm": ">=8.0.0"
+    "node": "^22.18.0 || >=24.11.0"
   },
+  "type": "module",
   "devDependencies": {
     "@babel/core": "^8.0.10",
     "@babel/preset-env": "^8.0.7",
