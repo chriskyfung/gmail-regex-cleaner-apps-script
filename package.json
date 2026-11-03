@@ -58,7 +58,7 @@
     "npm": ">=8.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^8.0.7",
+    "@babel/core": "^8.0.10",
     "@babel/preset-env": "^8.0.7",
     "@eslint/js": "^10.0.1",
     "@google/clasp": "^3.4.1",
