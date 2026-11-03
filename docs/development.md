@@ -5,7 +5,7 @@ This project uses [ESLint](https://eslint.org/) for code linting and [Prettier](
 To run the linter, use the following command:
 
 ```bash
-npm run lint
+pnpm run lint
 ```
 
 This project uses [Jest](https://jestjs.io/) for automated testing.
@@ -13,7 +13,7 @@ This project uses [Jest](https://jestjs.io/) for automated testing.
 To run the tests, use the following command:
 
 ```bash
-npm test
+pnpm test
 ```
 
 ## Build Process
@@ -23,7 +23,7 @@ This project uses [Rollup](https://rollupjs.org/) to bundle the source files fro
 To build the project, run:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 This command bundles `src/code.js` and processes `src/examples.js` into the `dist/` directory. It also removes a Node.js-specific code block from `code.js` that is used for testing with Jest.
@@ -51,7 +51,7 @@ To exclude functions, add their names to the `config.examples.exclude` array in 
 }
 ```
 
-When you run `npm run build`, the functions listed in the `exclude` array will be omitted from the output.
+When you run `pnpm run build`, the functions listed in the `exclude` array will be omitted from the output.
 
 ### Timezone Update
 
@@ -60,7 +60,7 @@ Optionally, you can update the timezone in the `dist/appsscript.json` manifest t
 To update the timezone, run the following command **after** the build command:
 
 ```bash
-npm run update-timezone
+pnpm run update-timezone
 ```
 
 ### `dateFormatterFactory`
